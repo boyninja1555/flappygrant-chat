@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/chat/:chatId", (req, res) => {
-    res.render("chat_room")
+    res.render("chat_room", { chatId: req.params.chatId })
 })
 
 const server = http.createServer(app)
