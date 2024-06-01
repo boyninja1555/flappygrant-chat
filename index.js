@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
     
     socket.on("chat message", ({ username, message }) => {
         // Update chatHistory.txt
-        fs.appendFile(path.join(__dirname, "public", "chatHistory.txt"), `\n<${username}> ${message}`, (err) => {
+        fs.appendFile(path.join(__dirname, "public", "chatHistory.txt"), `\n${username}: ${message}`, (err) => {
             if (err) {
                 console.error(err.stack)
             }
