@@ -34,13 +34,14 @@ io.on("connection", (socket) => {
         io.emit("chat room connection", { username: username })
     })
     
-    socket.on("chat message", ({ username, msg }) => {
+    socket.on("chat message", ({ username, message }) => {
         // Update chatHistory.txt
-        fs.appendFile(path.join(__dirname, "public", "chatHistory.txt"), `\n<${username}> ${msg}`, (err) => {
+        fs.appendFile(path.join(__dirname, "public", "chatHistory.txt"), `\n<${username}> ${message}`, (err) => {
             if (err) {
                 console.error(err.stack)
             }
         })
+        io.emit("chat message", { username: username, message: message })
     })
 
     socket.on("chat room disconnection", ({ username }) => {
