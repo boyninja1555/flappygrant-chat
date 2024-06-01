@@ -1,38 +1,48 @@
-const express = require("express")
-const http = require("http")
-const path = require("path")
-const socketIo = require("socket.io")
+const express = require("express");
+const http = require("http");
+const path = require("path");
+const socketIo = require("socket.io");
 
-const app = express()
-const PORT = 80
+const app = express();
+const PORT = 80;
 
-app.set("view engine", "ejs")
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views")); // Ensure views directory is set correctly
 
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-    res.render("index")
-})
+    res.render("index");
+});
 
-app.get("/chat/:chat_id", (req, res) => {
-    res.render("chat_room", { chat_id: req.params.chat_id })
-})
+app.get("/chat/:chatId", (req, res) => {
+    const chatId = req.params.chatId;
+    if (!chatId) {
+        return res.status(400).send("Chat ID is required");
+    }
+    res.render("chat_room", { chatId });
+});
 
-const server = http.createServer(app)
-const io = socketIo(server)
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send("Something broke!");
+});
+
+const server = http.createServer(app);
+const io = socketIo(server);
 
 io.on("connection", (socket) => {
-    console.log("A user has entered the chat")
+    console.log("A user has entered the chat");
 
     socket.on("chat message", ({ username, msg }) => {
-        io.emit("chat message", `<${username}> ${msg}`)
-    })
+        io.emit("chat message", `<${username}> ${msg}`);
+    });
 
     socket.on("disconnect", () => {
-        console.log("A user has left the chat")
-    })
-})
+        console.log("A user has left the chat");
+    });
+});
 
 server.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`)
-})
+    console.log(`Server listening on port ${PORT}`);
+});
