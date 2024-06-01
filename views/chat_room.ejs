@@ -3,20 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><%= chatId %> | FlappyGrant Chat</title>
+    <title>Chat Room | FlappyGrant Chat</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="shortcut icon" href="/favicon.png">
 </head>
 <body>
-    <h1><%= chatId %> | FlappyGrant Chat</h1>
+    <h1>Chat Room</h1>
     <p>Test</p>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/main.js"></script>
     <script>
         const socket = io()
-    </script>
+
+        socket.emit("chat room connection", { username })
+</script>
 </body>
 </html>
