@@ -1,6 +1,7 @@
 const express = require("express")
 const http = require("http")
 const path = require("path")
+const fs = require("fs")
 const socketIo = require("socket.io")
 
 const app = express()
@@ -34,7 +35,7 @@ io.on("connection", (socket) => {
     })
     
     socket.on("chat message", ({ username, msg }) => {
-        io.emit("chat message", `<${username}> ${msg}`)
+        // Update chatHistory.txt
     })
 
     socket.on("chat room disconnection", ({ username }) => {
