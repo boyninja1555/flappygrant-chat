@@ -30,7 +30,7 @@ const io = socketIo(server)
 io.on("connection", (socket) => {
     socket.on("chat room connection", ({ username }) => {
         console.log(`${username} joined the chat`)
-        io.emit("chat room connection", { username })
+        io.emit("chat room connection", { username: username })
     })
     
     socket.on("chat message", ({ username, msg }) => {
