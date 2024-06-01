@@ -27,7 +27,11 @@
         })
 
         socket.on("chat room connection", ({ username }) => {
-            console.log(`${username} has joined the chat`)
+            console.log(`${username} joined the chat`)
+        })
+
+        socket.on("chat room disconnection", ({ username }) => {
+            console.log(`${username} left the chat`)
         })
 </script>
 </body>
