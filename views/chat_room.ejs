@@ -35,7 +35,7 @@
             console.log(`${username} left the chat`)
         })
 
-        setInterval(() => {
+        socket.on("chat message", ({ username, message }) => {
             // Read /chatHistory.txt file and for each line in file, create a li with the contents of that line
             const msgList = document.getElementById("msgList")
             msgList.innerHTML = ""
@@ -53,7 +53,7 @@
                     })
                 })
                 .catch(error => console.error(`Error: ${error}`))
-        }, 500)
+        })
     </script>
 </body>
 </html>
