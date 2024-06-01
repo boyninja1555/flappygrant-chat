@@ -14,8 +14,8 @@ app.get("/", (req, res) => {
     res.render("index")
 })
 
-app.get("/chat/:chatId", (req, res) => {
-    res.render("chat_room", { chatId: req.params.chatId })
+app.get("/chat/:chat_id", (req, res) => {
+    res.render("chat_room", { chatId: req.params.chat_id })
 })
 
 const server = http.createServer(app)
