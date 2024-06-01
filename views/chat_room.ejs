@@ -24,7 +24,7 @@
         socket.emit("chat room connection", { username: username })
 
         window.addEventListener("beforeunload", () => {
-           socket.emit("chat room disconnection", { username: username })
+            socket.emit("chat room disconnection", { username: username })
         })
 
         socket.on("chat room connection", ({ username }) => {
@@ -34,6 +34,24 @@
         socket.on("chat room disconnection", ({ username }) => {
             console.log(`${username} left the chat`)
         })
-</script>
+
+        setInterval(() => {
+            // Read /chatHistory.txt file and for each line in file, create a li with the contents of that line
+            const chatHistoryFile = "/chatHistory.txt"
+            fetch(chatHistoryFile)
+                .then(response => response.text())
+                .then(data => {
+                    const lines = data.split("\n")
+                    const msgList = document.getElementById("msgList")
+                    lines.forEach(line => {
+                        const li = document.createElement("li")
+                        li.innerHTML = line
+                        li.id = "message"
+                        msgList.appendChild(li)
+                    })
+                })
+                .catch(error => console.error(`Error: ${error}`))
+        }, 500)
+    </script>
 </body>
 </html>

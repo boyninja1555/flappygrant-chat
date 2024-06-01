@@ -36,6 +36,11 @@ io.on("connection", (socket) => {
     
     socket.on("chat message", ({ username, msg }) => {
         // Update chatHistory.txt
+        fs.appendFile(path.join(__dirname, "public", "chatHistory.txt"), `\n<${username}> ${msg}`, (err) => {
+            if (err) {
+                console.error(err.stack)
+            }
+        })
     })
 
     socket.on("chat room disconnection", ({ username }) => {
