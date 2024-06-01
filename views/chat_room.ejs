@@ -19,6 +19,10 @@
         const socket = io()
 
         socket.emit("chat room connection", { username })
+
+        socket.on("chat room connection", ({ username }) => {
+            console.log(`${username} has joined the chat`)
+        })
 </script>
 </body>
 </html>
