@@ -15,7 +15,7 @@
     <ul id="msgList"></ul>
 
     <form id="sendMsgForm">
-        <input type="text" id="sendMsgInput" />
+        <input type="text" id="sendMsgInput" placeholder="Type your message here..." />
         <button type="submit">Send</button>
     </form>
 
@@ -67,6 +67,8 @@
             e.preventDefault();
 
             socket.emit("chat message", { username: username, message: sendMsgInput.value })
+
+            sendMsgInput.value = ""
         })
     </script>
 </body>
