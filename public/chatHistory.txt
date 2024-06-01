@@ -1,1 +1,1 @@
-<ChatBot> Chat started here
+ChatBot: Chat started here
