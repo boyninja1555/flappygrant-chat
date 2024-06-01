@@ -41,7 +41,7 @@ io.on("connection", (socket) => {
                 console.error(err.stack)
             }
         })
-        io.emit("chat message", { username: username, message: message })
+        io.emit("chat message")
     })
 
     socket.on("chat room disconnection", ({ username }) => {
