@@ -18,7 +18,7 @@
     <script>
         const socket = io()
 
-        socket.emit("chat room connection", { username })
+        socket.emit("chat room connection", { "Guest" })
 
         socket.on("chat room connection", ({ username }) => {
             console.log(`${username} has joined the chat`)
