@@ -66,7 +66,7 @@
         sendMsgForm.addEventListener("submit", (e) => {
             e.preventDefault();
 
-            socket.emit("chat message", { username, sendMsgInput.value })
+            socket.emit("chat message", { username: username, message: sendMsgInput.value })
         })
     </script>
 </body>
