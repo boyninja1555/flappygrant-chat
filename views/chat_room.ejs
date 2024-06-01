@@ -22,7 +22,7 @@
 
         socket.emit("chat room connection", { username: username })
 
-        window.addEventListener("beforeunload", function(e){
+        window.addEventListener("beforeunload", => {
            socket.emit("chat room disconnection", { username: username })
         })
 
