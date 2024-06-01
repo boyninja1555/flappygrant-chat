@@ -36,6 +36,11 @@ io.on("connection", (socket) => {
     socket.on("chat message", ({ username, msg }) => {
         io.emit("chat message", `<${username}> ${msg}`)
     })
+
+    socket.on("chat room disconnection", ({ username }) => {
+        console.log(`${username} left the chat`)
+        io.emit("chat room disconnection", { username: username })
+    })
 })
 
 server.listen(PORT, () => {
