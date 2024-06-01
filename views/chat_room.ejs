@@ -18,7 +18,7 @@
     <script>
         const socket = io()
 
-        const username = "Guest"
+        const username = localStorage.getItem("username") || "Guest"
 
         socket.emit("chat room connection", { username: username })
 
