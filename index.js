@@ -14,6 +14,10 @@ app.get("/", (req, res) => {
     res.render("index")
 })
 
+app.get("/chat/:chatId", (req, res) => {
+    res.render("chat_room")
+})
+
 const server = http.createServer(app)
 
 const io = require("socket.io")(server)
