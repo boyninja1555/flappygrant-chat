@@ -37,12 +37,14 @@
 
         setInterval(() => {
             // Read /chatHistory.txt file and for each line in file, create a li with the contents of that line
+            const msgList = document.getElementById("msgList")
+            msgList.innerHTML = ""
+
             const chatHistoryFile = "/chatHistory.txt"
             fetch(chatHistoryFile)
                 .then(response => response.text())
                 .then(data => {
                     const lines = data.split("\n")
-                    const msgList = document.getElementById("msgList")
                     lines.forEach(line => {
                         const li = document.createElement("li")
                         li.innerHTML = line
